@@ -1,23 +1,17 @@
-function hasContiguousSubarray(arr, target) {
-    let currentSum = 0;
-    let start = 0;
+function transformString(str) {
+    const length = str.length;
 
-    for (let end = 0; end < arr.length; end++) {
-        currentSum += arr[end];
-
-        while (currentSum > target && start <= end) {
-            currentSum -= arr[start];
-            start++;
-        }
-
-        if (currentSum === target) {
-            return true;
-        }
+    if (length % 15 === 0) {
+        return str.split('').reverse().map(char => char.charCodeAt(0)).join(' ');
+    } else if (length % 3 === 0) {
+        return str.split('').reverse().join('');
+    } else if (length % 5 === 0) {
+        return str.split('').map(char => char.charCodeAt(0)).join(' ');
+    } else {
+        return str;
     }
-
-    return false;
 }
 
-const arr = [4, 2, 7, 1, 9, 5];
-const target = 17;
-console.log(hasContiguousSubarray(arr, target));
+console.log(transformString("Hamburger"));
+console.log(transformString("Pizza"));
+console.log(transformString("Chocolate Chip Cookie"));
